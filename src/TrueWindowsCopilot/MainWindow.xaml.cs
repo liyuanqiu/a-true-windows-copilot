@@ -4,6 +4,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using TrueWindowsCopilot.Helpers;
+using TrueWindowsCopilot.Models;
+using TrueWindowsCopilot.Services.AI;
 using TrueWindowsCopilot.ViewModels;
 using Windows.System;
 
@@ -131,6 +133,43 @@ public sealed partial class MainWindow : Window
                 ? "gpt-5.2"
                 : modelBox.Text;
             settings.Save();
+
+            // Validate the API key with a minimal request
+            if (!string.IsNullOrEmpty(settings.ApiKey))
+            {
+                await ValidateAndRefreshAsync(settings);
+            }
+        }
+    }
+
+    private async Task ValidateAndRefreshAsync(SettingsHelper settings)
+    {
+        var openAiService = App.Services.GetRequiredService<OpenAiChatService>();
+        try
+        {
+            var testMessages = new List<ApiMessage>
+            {
+                new() { Role = "user", Content = "hi" }
+            };
+            await openAiService.GetCompletionAsync(testMessages, [], settings);
+
+            // Key works — refresh chat with the welcome message
+            ViewModel.StartNewChat();
+        }
+        catch (Exception ex)
+        {
+            var errorDialog = new ContentDialog
+            {
+                Title = "API Key Validation Failed",
+                Content = new TextBlock
+                {
+                    Text = $"Could not connect to the API:\n\n{ex.Message}\n\nPlease check your API key, base URL, and network connection.",
+                    TextWrapping = Microsoft.UI.Xaml.TextWrapping.Wrap
+                },
+                CloseButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
+            await errorDialog.ShowAsync();
         }
     }
 
