@@ -24,12 +24,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Dev: copy real appsettings.json to build output only -->
-    <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Never" />
-    <!-- Publish: use template with no secrets, renamed to appsettings.json -->
-    <Content Include="appsettings.template.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Always">
+    <!-- Dev (appsettings.json exists): use it for build, template for publish -->
+    <Content Include="appsettings.json" Condition="Exists('appsettings.json')" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Never" />
+    <!-- CI (appsettings.json absent): use template for build instead -->
+    <Content Include="appsettings.template.json" Condition="!Exists('appsettings.json')" CopyToOutputDirectory="PreserveNewest">
       <TargetPath>appsettings.json</TargetPath>
     </Content>
+    <!-- Publish always uses template (no secrets) -->
+    <None Include="appsettings.template.json" CopyToPublishDirectory="Always">
+      <TargetPath>appsettings.json</TargetPath>
+    </None>
   </ItemGroup>
 
 </Project>
