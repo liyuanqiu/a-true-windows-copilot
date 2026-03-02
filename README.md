@@ -74,13 +74,15 @@ And anything else PowerShell can do.
    ```
 4. Run `TrueWindowsCopilot.exe`
 
-No .NET installation needed — self-contained.
+Requires [.NET 10 Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) and [Windows App Runtime 1.8](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads) installed on the target machine.
 
 **Azure OpenAI** — set `ApiBaseUrl` to `https://your-resource.openai.azure.com/openai/v1`. Any OpenAI-compatible endpoint works.
 
 ### Requirements
 
 - Windows 10 2004+ or Windows 11 (x64 / ARM64)
+- [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)
+- [Windows App Runtime 1.8](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads)
 - PowerShell 5.1 (built-in) or [7+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows) (recommended, auto-detected)
 - Internet for API calls; all system operations run locally
 

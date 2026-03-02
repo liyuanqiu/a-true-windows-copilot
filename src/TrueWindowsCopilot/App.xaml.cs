@@ -16,6 +16,14 @@ public partial class App : Application
 
     public App()
     {
+        this.UnhandledException += (_, e) =>
+        {
+            System.IO.File.WriteAllText(
+                System.IO.Path.Combine(AppContext.BaseDirectory, "crash.log"),
+                $"{DateTime.Now}\n{e.Exception}\n{e.Message}");
+            e.Handled = false;
+        };
+
         this.InitializeComponent();
 
         var services = new ServiceCollection();
