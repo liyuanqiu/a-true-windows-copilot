@@ -1,0 +1,68 @@
+name: Cutting Edge Release
+
+on:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        include:
+          - platform: x64
+            rid: win-x64
+          - platform: ARM64
+            rid: win-arm64
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Publish
+        run: >
+          dotnet publish src/TrueWindowsCopilot/TrueWindowsCopilot.csproj
+          -c Release
+          -p:Platform=${{ matrix.platform }}
+          -r ${{ matrix.rid }}
+          --self-contained
+          -o publish/${{ matrix.rid }}
+
+      - name: Zip artifacts
+        run: Compress-Archive -Path publish/${{ matrix.rid }}/* -DestinationPath publish/TrueWindowsCopilot-${{ matrix.rid }}.zip -Force
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TrueWindowsCopilot-${{ matrix.rid }}
+          path: publish/TrueWindowsCopilot-${{ matrix.rid }}.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create or update cutting-edge release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: cutting-edge
+          name: Cutting Edge
+          body: |
+            This is an automated cutting-edge build from the latest `main` branch.
+            **Not recommended for general use — may be unstable.**
+          prerelease: true
+          make_latest: false
+          files: artifacts/**/*.zip
