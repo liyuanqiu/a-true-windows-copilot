@@ -2,6 +2,18 @@
 
 An autonomous AI agent that controls your Windows system through natural language. It writes and executes PowerShell scripts on-the-fly — no pre-coded operations, no limitations. Ask it anything, and it figures out how.
 
+## Motivation
+
+My new work laptop came loaded with a bunch of software and tools that had nothing to do with development. I wanted an AI to help me identify and uninstall all the irrelevant ones.
+
+I knew Microsoft had a **Windows Copilot**, so I tried it — and asked it to help me clean up. It told me it couldn't do that, and instead gave me a documentation link explaining how to manually uninstall apps. That was... more or less frustrating.
+
+So I opened **VS Code** and used **GitHub Copilot** to get the job done — and it worked. But GitHub Copilot doesn't have a standalone version; it lives inside a development tool, which makes running everyday system tasks through it feel a bit awkward.
+
+That got me thinking: *why not let GitHub Copilot hatch a True Windows Copilot?*
+
+And so this project was born. **It was 100% written by GitHub Copilot.**
+
 > **Note:** This project is a **complement** to Windows Copilot, not a replacement. We understand that Windows Copilot limits direct system operations for good security reasons. This app targets power users who want deeper control and accept the associated risks.
 
 > **⚠️ Experimental Software:** This software has no intention of damaging your system. However, AI-generated actions are not 100% predictable. While we've built safety measures (revertible changes, confirmation for irreversible operations), unintended results are still possible. **Use at your own risk.**
