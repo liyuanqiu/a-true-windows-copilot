@@ -23,17 +23,17 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.3" />
   </ItemGroup>
 
+  <!-- appsettings handling: real file for dev, template for CI and publish -->
+  <ItemGroup Condition="Exists('appsettings.json')">
+    <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Never" />
+  </ItemGroup>
   <ItemGroup>
-    <!-- Dev (appsettings.json exists): use it for build, template for publish -->
-    <Content Include="appsettings.json" Condition="Exists('appsettings.json')" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Never" />
-    <!-- CI (appsettings.json absent): use template for build instead -->
-    <Content Include="appsettings.template.json" Condition="!Exists('appsettings.json')" CopyToOutputDirectory="PreserveNewest">
+    <Content Include="appsettings.template.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Always">
       <TargetPath>appsettings.json</TargetPath>
     </Content>
-    <!-- Publish always uses template (no secrets) -->
-    <None Include="appsettings.template.json" CopyToPublishDirectory="Always">
-      <TargetPath>appsettings.json</TargetPath>
-    </None>
+  </ItemGroup>
+  <ItemGroup Condition="!Exists('appsettings.json')">
+    <Content Include="appsettings.template.json" Link="appsettings.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Never" />
   </ItemGroup>
 
 </Project>
