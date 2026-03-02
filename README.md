@@ -62,21 +62,12 @@ And anything else PowerShell can do.
 
 1. Download `TrueWindowsCopilot-win-x64.zip` (or `win-arm64`)
 2. Extract anywhere
-3. Edit `appsettings.json`:
-   ```json
-   {
-     "OpenAI": {
-       "ApiKey": "your-api-key",
-       "ApiBaseUrl": "https://api.openai.com/v1",
-       "ModelName": "gpt-5.2"
-     }
-   }
-   ```
-4. Run `TrueWindowsCopilot.exe`
+3. Run `TrueWindowsCopilot.exe`
+4. Click ⚙️ (top-right) to enter your API key, base URL, and model name
 
 Requires [.NET 10 Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) and [Windows App Runtime 1.8](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads) installed on the target machine.
 
-**Azure OpenAI** — set `ApiBaseUrl` to `https://your-resource.openai.azure.com/openai/v1`. Any OpenAI-compatible endpoint works.
+Supports OpenAI, Azure OpenAI, and any OpenAI-compatible endpoint.
 
 ### Requirements
 
