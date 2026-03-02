@@ -4,8 +4,12 @@ on:
   push:
     tags: ["v*"]
 
+permissions: {}
+
 jobs:
   build:
+    permissions:
+      contents: read
     runs-on: windows-latest
     strategy:
       matrix:
