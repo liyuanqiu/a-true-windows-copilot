@@ -2,6 +2,13 @@
 
 An autonomous AI agent that controls your Windows system through natural language. It writes and executes PowerShell scripts on-the-fly — no pre-coded operations, no limitations. Ask it anything, and it figures out how.
 
+Built with **WinUI 3 + Windows App SDK 1.8 + .NET 10**.
+
+![Windows 10 2004+](https://img.shields.io/badge/Windows-10%202004%2B-0078D6?logo=windows)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)
+![WinUI 3](https://img.shields.io/badge/WinUI-3-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 ## Motivation
 
 My new work laptop came loaded with a bunch of software and tools that had nothing to do with development. I wanted an AI to help me identify and uninstall all the irrelevant ones.
@@ -17,13 +24,6 @@ And so this project was born. **It was 100% written by GitHub Copilot.**
 > **Note:** This project is a **complement** to Windows Copilot, not a replacement. We understand that Windows Copilot limits direct system operations for good security reasons. This app targets power users who want deeper control and accept the associated risks.
 
 > **⚠️ Experimental Software:** This software has no intention of damaging your system. However, AI-generated actions are not 100% predictable. While we've built safety measures (revertible changes, confirmation for irreversible operations), unintended results are still possible. **Use at your own risk.**
-
-Built with **WinUI 3 + Windows App SDK 1.8 + .NET 10**.
-
-![Windows 10 2004+](https://img.shields.io/badge/Windows-10%202004%2B-0078D6?logo=windows)
-![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet)
-![WinUI 3](https://img.shields.io/badge/WinUI-3-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
