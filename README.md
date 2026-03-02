@@ -13,6 +13,14 @@ Built with **WinUI 3 + Windows App SDK 1.8 + .NET 10**.
 
 ---
 
+## Screenshots
+
+![Screenshot 1](assets/Screenshot_1.png)
+![Screenshot 2](assets/Screenshot_2.png)
+![Screenshot 3](assets/Screenshot_3.png)
+
+---
+
 ## How It Works
 
 The AI has full PowerShell access and autonomously writes the right scripts for any task. It supports **multi-round tool chaining** — up to 10 calls per turn. If one approach fails, it reads the error, adapts, and retries.
