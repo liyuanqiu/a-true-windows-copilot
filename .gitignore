@@ -1,0 +1,34 @@
+# Build outputs
+[Bb]in/
+[Oo]bj/
+publish/
+TestResults/
+
+# User-specific settings (only the one with real API keys)
+src/TrueWindowsCopilot/appsettings.json
+
+# VS Code
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+*.DotSettings.user

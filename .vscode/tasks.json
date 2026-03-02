@@ -1,0 +1,94 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/TrueWindowsCopilot/TrueWindowsCopilot.csproj",
+        "-c", "Debug",
+        "-p:Platform=x64",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build-release",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/src/TrueWindowsCopilot/TrueWindowsCopilot.csproj",
+        "-c", "Release",
+        "-p:Platform=x64",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary;ForceNoAlign"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish (x64)",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/src/TrueWindowsCopilot/TrueWindowsCopilot.csproj",
+        "-c", "Release",
+        "-p:Platform=x64",
+        "-r", "win-x64",
+        "--self-contained",
+        "-o", "${workspaceFolder}/publish/win-x64"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "publish (ARM64)",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "publish",
+        "${workspaceFolder}/src/TrueWindowsCopilot/TrueWindowsCopilot.csproj",
+        "-c", "Release",
+        "-p:Platform=ARM64",
+        "-r", "win-arm64",
+        "--self-contained",
+        "-o", "${workspaceFolder}/publish/win-arm64"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "publish + zip (x64)",
+      "dependsOn": "publish (x64)",
+      "type": "shell",
+      "command": "Compress-Archive -Path ${workspaceFolder}/publish/win-x64/* -DestinationPath ${workspaceFolder}/publish/TrueWindowsCopilot-win-x64.zip -Force; Write-Host 'Created: publish/TrueWindowsCopilot-win-x64.zip'",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "publish + zip (ARM64)",
+      "dependsOn": "publish (ARM64)",
+      "type": "shell",
+      "command": "Compress-Archive -Path ${workspaceFolder}/publish/win-arm64/* -DestinationPath ${workspaceFolder}/publish/TrueWindowsCopilot-win-arm64.zip -Force; Write-Host 'Created: publish/TrueWindowsCopilot-win-arm64.zip'",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "publish + zip (ALL)",
+      "dependsOn": [
+        "publish + zip (x64)",
+        "publish + zip (ARM64)"
+      ],
+      "problemMatcher": [],
+      "group": "build"
+    }
+  ]
+}
