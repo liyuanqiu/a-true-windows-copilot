@@ -6,7 +6,7 @@ An autonomous AI agent that controls your Windows system through natural languag
 
 My new work laptop came loaded with a bunch of software and tools that had nothing to do with development. I wanted an AI to help me identify and uninstall all the irrelevant ones.
 
-I knew Microsoft had a **Windows Copilot**, so I tried it — and asked it to help me clean up. It told me it couldn't do that, and instead gave me a documentation link explaining how to manually uninstall apps. That was... more or less frustrating.
+I knew Microsoft had a **Windows Copilot**, so I tried it — and asked it to help me clean up. It told me it couldn't do that, and instead wrote me a step-by-step tutorial on how to manually uninstall apps myself. That was... more or less frustrating.
 
 So I opened **VS Code** and used **GitHub Copilot** to get the job done — and it worked. But GitHub Copilot doesn't have a standalone version; it lives inside a development tool, which makes running everyday system tasks through it feel a bit awkward.
 
