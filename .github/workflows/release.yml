@@ -26,14 +26,16 @@ jobs:
         with:
           dotnet-version: "10.0.x"
 
-      - name: Publish
+      - name: Build
         run: >
-          dotnet publish src/TrueWindowsCopilot/TrueWindowsCopilot.csproj
+          dotnet build src/TrueWindowsCopilot/TrueWindowsCopilot.csproj
           -c Release
           -p:Platform=${{ matrix.platform }}
-          -r ${{ matrix.rid }}
-          --self-contained
-          -o publish/${{ matrix.rid }}
+
+      - name: Copy build output
+        run: |
+          $src = "src/TrueWindowsCopilot/bin/${{ matrix.platform }}/Release/net10.0-windows10.0.22621.0"
+          Copy-Item $src publish/${{ matrix.rid }} -Recurse -Force
 
       - name: Zip artifacts
         run: Compress-Archive -Path publish/${{ matrix.rid }}/* -DestinationPath publish/TrueWindowsCopilot-${{ matrix.rid }}.zip -Force
