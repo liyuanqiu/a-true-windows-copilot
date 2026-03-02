@@ -1,0 +1,25 @@
+name: PR Build
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [x64, ARM64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore dependencies
+        run: dotnet restore src/TrueWindowsCopilot/TrueWindowsCopilot.csproj -p:Platform=${{ matrix.platform }}
+
+      - name: Build
+        run: dotnet build src/TrueWindowsCopilot/TrueWindowsCopilot.csproj -c Release -p:Platform=${{ matrix.platform }} --no-restore
