@@ -4,6 +4,8 @@ An autonomous AI agent that controls your Windows system through natural languag
 
 > **Note:** This project is a **complement** to Windows Copilot, not a replacement. We understand that Windows Copilot limits direct system operations for good security reasons. This app targets power users who want deeper control and accept the associated risks.
 
+> **⚠️ Experimental Software:** This software has no intention of damaging your system. However, AI-generated actions are not 100% predictable. While we've built safety measures (revertible changes, confirmation for irreversible operations), unintended results are still possible. **Use at your own risk.**
+
 Built with **WinUI 3 + Windows App SDK 1.8 + .NET 10**.
 
 ![Windows 10 2004+](https://img.shields.io/badge/Windows-10%202004%2B-0078D6?logo=windows)
